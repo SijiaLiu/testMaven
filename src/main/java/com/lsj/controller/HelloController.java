@@ -1,20 +1,22 @@
-package com.lsj;
+package com.lsj.controller;
+
+/**
+ * Created by liusijia on 2017/9/22.
+ */
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Created by liusijia on 2017/9/18.
- */
 @RestController
 @EnableAutoConfiguration
-public class test {
+public class HelloController {
 
-    @RequestMapping("/hello")
+    @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String hello(){
-        return "hello SprintBoot";
+        return "hello SpringBoot";
     }
 
     @RequestMapping("/word/{name}")
