@@ -2,6 +2,7 @@ package com.lsj.controller;
 
 import com.lsj.Entity.Person;
 import com.lsj.dao.PersonRepository;
+import com.lsj.service.IPersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,9 @@ public class PersonController {
 
     @Autowired
     PersonRepository personRepository;
+
+    @Autowired
+    IPersonService iPersonService;
 
     @RequestMapping(value = "/person", method = RequestMethod.GET)
     public List<Person> getPersonList(){
@@ -50,5 +54,15 @@ public class PersonController {
         person.setName(_name);
         person.setAge(_age);
         return personRepository.save(person);
+    }
+
+    @RequestMapping(value = "/person/age/{_age}", method = RequestMethod.GET)
+    public List<Person> getPersonByAge(@PathVariable("_age") Integer _age){
+        return personRepository.findPersonByAge(_age);
+    }
+
+    @RequestMapping(value = "/person/addTwo", method = RequestMethod.POST)
+    public void addTwo(){
+        iPersonService.insertTwo();
     }
 }
