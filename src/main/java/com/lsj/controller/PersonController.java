@@ -3,6 +3,8 @@ package com.lsj.controller;
 import com.lsj.Entity.Person;
 import com.lsj.dao.PersonRepository;
 import com.lsj.service.IPersonService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.validation.BindingResult;
@@ -18,6 +20,9 @@ import java.util.List;
 @EnableAutoConfiguration
 public class PersonController {
 
+    private final static Logger logger = LoggerFactory.getLogger(PersonController.class);
+
+
     @Autowired
     PersonRepository personRepository;
 
@@ -26,6 +31,7 @@ public class PersonController {
 
     @RequestMapping(value = "/person", method = RequestMethod.GET)
     public List<Person> getPersonList(){
+        logger.info("getPersonList");
         return personRepository.findAll();
     }
 
