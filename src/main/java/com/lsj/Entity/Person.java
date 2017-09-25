@@ -3,6 +3,7 @@ package com.lsj.Entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
 import java.io.Serializable;
 
 /**
@@ -15,6 +16,7 @@ public class Person implements Serializable{
     @GeneratedValue
     private Integer id;
     private String name;
+    @Min(value = 18, message = "未成年禁止入内")
     private Integer age;
 
     public Person() {

@@ -5,8 +5,10 @@ import com.lsj.dao.PersonRepository;
 import com.lsj.service.IPersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -33,10 +35,13 @@ public class PersonController {
     }
 
     @RequestMapping(value = "/person/add", method = RequestMethod.POST)
-    public Person addPerson(@RequestParam("_name") String _name, @RequestParam("_age") Integer _age){
-        Person person = new Person();
-        person.setName(_name);
-        person.setAge(_age);
+    public Person addPerson(@Valid Person person, BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            System.out.println(bindingResult.getFieldError().getDefaultMessage());
+            return null;
+        }
+        person.setName(person.getName());
+        person.setAge(person.getAge());
         return personRepository.save(person);
     }
 
