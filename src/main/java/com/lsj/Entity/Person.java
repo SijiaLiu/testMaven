@@ -1,5 +1,7 @@
 package com.lsj.Entity;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,6 +17,7 @@ public class Person implements Serializable{
     @Id
     @GeneratedValue
     private Integer id;
+    @NotBlank(message = "name必传")
     private String name;
     @Min(value = 18, message = "未成年禁止入内")
     private Integer age;

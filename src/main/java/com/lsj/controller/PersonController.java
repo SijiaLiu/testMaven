@@ -1,8 +1,10 @@
 package com.lsj.controller;
 
 import com.lsj.Entity.Person;
+import com.lsj.Entity.Result;
 import com.lsj.dao.PersonRepository;
 import com.lsj.service.IPersonService;
+import com.lsj.utils.ResultUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,14 +43,13 @@ public class PersonController {
     }
 
     @RequestMapping(value = "/person/add", method = RequestMethod.POST)
-    public Person addPerson(@Valid Person person, BindingResult bindingResult){
+    public Result<Person> addPerson(@Valid Person person, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
-            System.out.println(bindingResult.getFieldError().getDefaultMessage());
-            return null;
+            return ResultUtil.error(1, bindingResult.getFieldError().getDefaultMessage());
         }
         person.setName(person.getName());
         person.setAge(person.getAge());
-        return personRepository.save(person);
+        return ResultUtil.success(personRepository.save(person));
     }
 
     @RequestMapping(value = "/person/del/{_id}", method = RequestMethod.DELETE)
