@@ -50,4 +50,9 @@ public class PersonServiceImpl implements IPersonService {
 //            throw new PersonException(ResultEnum.UNKNOWN_ERROR);
 //        }
     }
+
+    @Override
+    public Person findOne(Integer _id) {
+        return personRepository.findOne(_id);
+    }
 }
