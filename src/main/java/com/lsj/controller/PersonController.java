@@ -24,7 +24,6 @@ public class PersonController {
 
     private final static Logger logger = LoggerFactory.getLogger(PersonController.class);
 
-
     @Autowired
     PersonRepository personRepository;
 
@@ -45,7 +44,8 @@ public class PersonController {
     @RequestMapping(value = "/person/add", method = RequestMethod.POST)
     public Result<Person> addPerson(@Valid Person person, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
-            return ResultUtil.error(1, bindingResult.getFieldError().getDefaultMessage());
+            return null;
+//            return ResultUtil.error(1, bindingResult.getFieldError().getDefaultMessage());
         }
         person.setName(person.getName());
         person.setAge(person.getAge());
@@ -73,8 +73,14 @@ public class PersonController {
         return personRepository.findPersonByAge(_age);
     }
 
+    //事务管理测试
     @RequestMapping(value = "/person/addTwo", method = RequestMethod.POST)
     public void addTwo(){
         iPersonService.insertTwo();
+    }
+    //统一异常处理测试
+    @RequestMapping(value = "/person/getAge/{_id}", method = RequestMethod.GET)
+    public void getPersonAgeById(@PathVariable("_id") Integer _id) throws Exception {
+        iPersonService.getAge(_id);
     }
 }

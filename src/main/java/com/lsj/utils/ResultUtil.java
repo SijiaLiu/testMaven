@@ -4,6 +4,7 @@ import com.lsj.Entity.Result;
 
 /**
  * Created by liusijia on 2017/9/25.
+ * 使用工具类统一封装返回的信息
  */
 public class ResultUtil {
 

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by liusijia on 2017/9/25.
+ * 使用AOP拦截请求
  */
 @Aspect
 @Component

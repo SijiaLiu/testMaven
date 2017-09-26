@@ -2,6 +2,7 @@ package com.lsj.Entity;
 
 /**
  * Created by liusijia on 2017/9/25.
+ * 统一返回结果的格式
  */
 public class Result<T> {
 
